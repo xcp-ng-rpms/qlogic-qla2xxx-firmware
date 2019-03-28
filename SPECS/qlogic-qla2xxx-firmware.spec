@@ -12,7 +12,7 @@
 Summary: %{vendor_name} %{driver_name} firmware
 Name: %{vendor_label}-%{driver_name}-firmware
 Version: 8.03.02
-Release: 1
+Release: 1%{dist}
 License: GPL
 Source: https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-%{vendor_name}-%{driver_name}/archive?at=%{version}&format=tar.gz&prefix=firmware-%{vendor_label}-%{driver_name}-%{version}#/%{name}-%{version}.tar.gz
 
