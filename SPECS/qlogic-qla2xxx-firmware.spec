@@ -14,7 +14,12 @@ Name: %{vendor_label}-%{driver_name}-firmware
 Version: 8.03.02
 Release: 1%{dist}
 License: GPL
-Source: https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-%{vendor_name}-%{driver_name}/archive?at=%{version}&format=tar.gz&prefix=firmware-%{vendor_label}-%{driver_name}-%{version}#/%{name}-%{version}.tar.gz
+
+Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-Qlogic-qla2xxx/archive?at=8.03.02&format=tar.gz&prefix=firmware-qlogic-qla2xxx-8.03.02#/qlogic-qla2xxx-firmware-8.03.02.tar.gz
+
+
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-Qlogic-qla2xxx/archive?at=8.03.02&format=tar.gz&prefix=firmware-qlogic-qla2xxx-8.03.02#/qlogic-qla2xxx-firmware-8.03.02.tar.gz) = b15d273318e67e4f83f0f4dabe9c08000281d981
+
 
 BuildRequires: kernel-devel
 
@@ -23,7 +28,7 @@ BuildRequires: kernel-devel
 version %{kernel_version}.
 
 %prep
-%autosetup -p1 -n firmware-%{vendor_label}-%{driver_name}-%{version} -n firmware-qlogic-qla2xxx-8.03.02
+%autosetup -p1 -n firmware-%{vendor_label}-%{driver_name}-%{version}
 
 %build
 
