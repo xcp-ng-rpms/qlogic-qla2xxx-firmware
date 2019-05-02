@@ -12,7 +12,7 @@
 Summary: %{vendor_name} %{driver_name} firmware
 Name: %{vendor_label}-%{driver_name}-firmware
 Version: 8.03.02
-Release: 1%{dist}
+Release: 1%{?dist}
 License: GPL
 
 Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-Qlogic-qla2xxx/archive?at=8.03.02&format=tar.gz&prefix=firmware-qlogic-qla2xxx-8.03.02#/qlogic-qla2xxx-firmware-8.03.02.tar.gz
