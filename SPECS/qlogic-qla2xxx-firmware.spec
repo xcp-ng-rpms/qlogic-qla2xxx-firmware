@@ -1,3 +1,8 @@
+%global package_speccommit 195079a2f9451b5406d6d5abdac0a843568e550c
+%global usver 8.03.02
+%global xsver 2
+%global xsrel %{xsver}%{?xscount}%{?xshash}
+%global package_srccommit 8.03.02
 %define vendor_name Qlogic
 %define vendor_label qlogic
 %define driver_name qla2xxx
@@ -12,14 +17,9 @@
 Summary: %{vendor_name} %{driver_name} firmware
 Name: %{vendor_label}-%{driver_name}-firmware
 Version: 8.03.02
-Release: 1
+Release: %{?xsrel}%{?dist}
 License: GPL
-
-Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-Qlogic-qla2xxx/archive?at=8.03.02&format=tar.gz&prefix=firmware-qlogic-qla2xxx-8.03.02#/qlogic-qla2xxx-firmware-8.03.02.tar.gz
-
-
-Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/firmware-Qlogic-qla2xxx/archive?at=8.03.02&format=tar.gz&prefix=firmware-qlogic-qla2xxx-8.03.02#/qlogic-qla2xxx-firmware-8.03.02.tar.gz) = b15d273318e67e4f83f0f4dabe9c08000281d981
-
+Source0: qlogic-qla2xxx-firmware-8.03.02.tar.gz
 
 BuildRequires: kernel-devel
 
@@ -28,14 +28,13 @@ BuildRequires: kernel-devel
 version %{kernel_version}.
 
 %prep
-%autosetup -p1 -n firmware-%{vendor_label}-%{driver_name}-%{version}
+%autosetup -p1 -n %{vendor_label}-%{driver_name}-firmware-%{version}
 
 %build
 
 %install
-# Put firmware in /lib/firmware/%{kernel_version}
 mkdir -p %{buildroot}/%{firmware_dir}
-pushd %{_builddir}/firmware-%{vendor_label}-%{driver_name}-%{version}
+pushd %{_builddir}/%{vendor_label}-%{driver_name}-firmware-%{version}
 find . -depth -print | cpio -pdmv %{buildroot}/%{firmware_dir}
 popd
 
@@ -43,3 +42,5 @@ popd
 %{firmware_dir}/*
 
 %changelog
+* Tue Dec 01 2020 Ross Lagerwall <ross.lagerwall@citrix.com> - 8.03.02-2
+- CP-35517: Convert to Koji
